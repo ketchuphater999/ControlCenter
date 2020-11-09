@@ -1,5 +1,5 @@
-local cobalt = dofile('cobalt')
-cobalt.ui = dofile('cobalt-ui/init.lua')
+local cobalt = dofile('ControlCenter/cobalt')
+cobalt.ui = dofile('ControlCenter/cobalt-ui/init.lua')
 cobalt.monitor = true
 
 frame = {
@@ -14,7 +14,7 @@ term.current().setTextScale(0.5)
 local displayWidth = 79 --164 if 8-wide, 79 if 4-wide
 local displayHeight = 52
 
-scrollView = dofile('autocrafting/ScrollView.lua')
+scrollView = dofile('ControlCenter/ScrollView.lua')
 
 local view = cobalt.ui.new({
     w = "100%",
@@ -49,11 +49,12 @@ function cobalt.draw()
 end  
 
 function cobalt.update(dt)
-    log(hi)
+    log("hi")
 end
 
 function cobalt.mousepressed( x, y, button )
-	cobalt.ui.mousepressed( x, y, button )
+    cobalt.ui.mousepressed( x, y, button )
+    log("pressed")
 end
 
 function cobalt.mousereleased( x, y, button )

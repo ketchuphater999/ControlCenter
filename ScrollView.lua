@@ -106,8 +106,6 @@ function updateScrollBar()
     
     local pos = position * thumbArea.h + 1
     thumb.y = math.floor(pos)
-    
-    log(pos)
 end
 
 function scrollUp()
@@ -129,6 +127,7 @@ function scrollDown()
     ScrollView.contentView.y = pos
     updateScrollBar()
 end
+
 
 function copy2(obj)
     if type(obj) ~= 'table' then return obj end

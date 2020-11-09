@@ -19,13 +19,14 @@ cobalt = {
 	table = { },
 	state = "Main",
 	version = "1.1_3",
-	updatespeed = 0.2,
+	updatespeed = 0.1,
 	monitor = true
 }
 
 cobalt.surface = dofile( "cobalt-lib/surface" )
 
---cobalt.updatetimer = os.startTimer( cobalt.updatespeed )
+resetTimer = os.startTimer
+cobalt.updatetimer = os.startTimer( cobalt.updatespeed )
 local callbacks = { }
 function cobalt.debug( item )
 	local f = fs.open( ".cobaltdebug", "w" )
@@ -425,7 +426,7 @@ local function update()
 			cerr( err )
 		end
 	end
-	--cobalt.updatetimer = os.startTimer( cobalt.updatespeed )
+	cobalt.updatetimer = resetTimer( cobalt.updatespeed )
 	if cobalt.draw then 
 		if cobalt.application.view then 
 			cobalt.application.view:clear(" ", cobalt.application.backColour, cobalt.application.foreColour ); 
@@ -433,6 +434,7 @@ local function update()
 		if cobalt.application.view then 
 			cobalt.application.view:render() 
 		end 
+		resetTimer = function(a) return nil end
 	end
 end
 
@@ -446,7 +448,7 @@ function cobalt.initLoop( runOnce )
 	if cobalt.monitor then
 		monitorFunc = cobalt.mousereleased
 	end
-	update()
+	
 	while cobalt._mainloop do
 
 		local e, a, b, c, d, e
@@ -491,8 +493,11 @@ function cobalt.initLoop( runOnce )
 					cerr( err )
 				end
 				monitorFunc(b,c,a)
-				
-				update()
+				cobalt.resetTimer = function(a) return nil end
+    			cobalt.draw()
+    			if cobalt.application.view then 
+        			cobalt.application.view:render() 
+    			end 
 			end --b, c, a to keep love.mousepressed syntax as( x, y, button ), not ( button, x, y )
 		elseif e == "mouse_up" then
 			if cobalt.mousereleased then 
