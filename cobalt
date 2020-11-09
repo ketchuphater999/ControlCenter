@@ -24,7 +24,7 @@ cobalt = {
 }
 
 local cd = fs.getDir(shell.getRunningProgram())
-
+print("cobalt"..cd)
 cobalt.surface = dofile( cd.."/cobalt-lib/surface" )
 
 resetTimer = os.startTimer

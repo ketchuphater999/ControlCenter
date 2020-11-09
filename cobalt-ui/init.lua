@@ -5,7 +5,7 @@ cui.styles = { }
 cui.elements = { }
 
 local cd = fs.getDir(shell.getRunningProgram())
-
+print("init"..cd)
 for i, v in pairs( fs.list( cd.."/cobalt-ui/elements" ) ) do
 	cui.elements[v:sub(1, #v-4)] = dofile(cd.."/cobalt-ui/elements/" .. v)
 end
