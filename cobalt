@@ -23,7 +23,9 @@ cobalt = {
 	monitor = true
 }
 
-cobalt.surface = dofile( "cobalt-lib/surface" )
+local cd = fs.getDir(shell.getRunningProgram())
+
+cobalt.surface = dofile( cd.."/cobalt-lib/surface" )
 
 resetTimer = os.startTimer
 cobalt.updatetimer = os.startTimer( cobalt.updatespeed )
