@@ -3,8 +3,11 @@ cui = { }
 cui.roots = { }
 cui.styles = { }
 cui.elements = { }
-for i, v in pairs( fs.list( "cobalt-ui/elements" ) ) do
-	cui.elements[v:sub(1, #v-4)] = dofile("cobalt-ui/elements/" .. v)
+
+local cd = fs.getDir(shell.getRunningProgram())
+
+for i, v in pairs( fs.list( cd.."/cobalt-ui/elements" ) ) do
+	cui.elements[v:sub(1, #v-4)] = dofile(cd.."/cobalt-ui/elements/" .. v)
 end
 
 local colcharlookup = { }
