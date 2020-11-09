@@ -1,5 +1,6 @@
-local cobalt = dofile('ControlCenter/cobalt')
-cobalt.ui = dofile('ControlCenter/cobalt-ui/init.lua')
+local cd = fs.getDir(shell.getRunningProgram())
+local cobalt = dofile(cd..'/cobalt')
+cobalt.ui = dofile(cd..'/cobalt-ui/init.lua')
 cobalt.monitor = true
 
 frame = {
